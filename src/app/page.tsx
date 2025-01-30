@@ -12,7 +12,7 @@ export default function Home() {
         <div>
             <Image
                 className="tv-image"
-                src="/tv.svg"
+                src="tv.svg"
                 alt="TV"
                 width={210}
                 height={170}
