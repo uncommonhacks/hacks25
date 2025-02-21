@@ -1,25 +1,21 @@
-import React from 'react';
-import Image from 'next/image';
-
-// const imageStyle = {
-//     borderRadius: '10%',
-//     border: '1px solid #fff',
-// }
-
+// app/page.tsx (Home/About page)
 export default function Home() {
-  return (
-      <main>
-        <div>
-            <Image
-                className="tv-image"
-                src="/tv.svg"
-                alt="TV"
-                width={210}
-                height={170}
-                // onLoad={(e) => console.log(e.target.)}
-                // style={imageStyle}
-            />
+    return (
+        <div className="tv-content">
+            {/*<div className="crt-overlay"></div>*/}
+            {/*<h1 className="crt-text-glitch">WELCOME TO ARCADE 25</h1>*/}
+            {/*<div className="terminal-text">*/}
+            {/*    <p className="blink"> READY FOR INPUT</p>*/}
+            {/*</div>*/}
+
+            <div className="credits-box">
+                <h2>Event Details:</h2>
+                <ul>
+                    <li> DATE: 28-30 MARCH 2025</li>
+                    <li> LOCATION: POLSKY CENTER</li>
+                    <li> PRIZES: LEGENDARY ITEMS</li>
+                </ul>
+            </div>
         </div>
-      </main>
-  );
+    );
 }

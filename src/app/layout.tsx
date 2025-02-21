@@ -1,34 +1,46 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+// app/layout.tsx
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import NavButtons from './NavButtons';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Uncommon Hacks 2025",
-  description: "University of Chicago's 2025 Major League Hackathon",
+    title: 'Arcade Event',
+    description: 'Retro-themed event platform',
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+                                       children,
+                                   }: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en">
+        <body className={inter.className}>
+        <div className="arcade-container">
+            <div className="shelf">
+                {/* Shelf SVG */}
+                <img
+                    src="/shelf_right.svg"
+                    alt="Arcade shelf"
+                    className="shelf-svg"
+                />
+                <NavButtons />
+            </div>
+
+            <div className="tv-screen">
+                {/* TV SVG */}
+                <img
+                    src="/tv.svg"
+                    alt="CRT TV"
+                    className="tv-svg"
+                />
+                {children}
+            </div>
+        </div>
+        </body>
+        </html>
+    );
 }

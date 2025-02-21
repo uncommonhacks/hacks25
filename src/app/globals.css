@@ -1,39 +1,52 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/*.header {*/
-/*  !*display: flex;*!*/
-/*  !*justify-content: center;*!*/
-/*  !*align-items: center;*!*/
-/*}*/
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Shelf styling */
+.shelf-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: auto;
+  z-index: 1;
 }
 
-.tv-image {
+/* TV screen styling */
+.tv-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
 }
 
-/*!* Mobile *!*/
-/*@media (prefers-color-scheme: dark) {*/
-/*  :root {*/
-/*    --background: #0a0a0a;*/
-/*    --foreground: #ededed;*/
-/*  }*/
-/*  .tv-image {*/
-/*    width: 100%;*/
-/*    height: auto;*/
-/*  }*/
-/*}*/
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Maintain arcade look */
+.arcade-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 100vh;
+  background: #1a1a1a;
 }
 
+.tv-screen {
+  position: relative;
+  height: 100vh;
+}
 
+.tv-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+}
+
+.crt-text {
+  text-shadow: 0 0 5px #00ff00;
+  animation: text-glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+  from { text-shadow: 0 0 5px #00ff00; }
+  to { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
+}
