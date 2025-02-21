@@ -1,44 +1,54 @@
-// app/layout.tsx
-import type { Metadata } from 'next';
+'use client';
+
+import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import NavButtons from './NavButtons';
+import dynamic from 'next/dynamic';
 
+const NavButtons = dynamic(() => import('./NavButtons'), {ssr: false});
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-    title: 'Arcade Event',
-    description: 'Retro-themed event platform',
-};
-
-export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode
+export default function RootLayout({ children,
+    }: {children: React.ReactNode
 }) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <div className="arcade-container">
-            <div className="shelf">
-                {/* Shelf SVG */}
-                <img
-                    src="/shelf_right.svg"
-                    alt="Arcade shelf"
-                    className="shelf-svg"
-                />
-                <NavButtons />
+        <body className={`${inter.className} arcade-root`}>
+        <div className={"arcade-machine"}>
+            <div className={"shelf-container"}>
+                <div className={"shelf-overlay"}>
+                    <Image
+                        src={"/shelf_right.svg"}
+                        alt={"Arcade controls shelf"}
+                        width={110}
+                        height={258}
+                        className="shelf-bg"
+                        priority
+                        unoptimized
+                    />
+                    <NavButtons/>
+                </div>
             </div>
 
-            <div className="tv-screen">
-                {/* TV SVG */}
-                <img
+            <div className={"crt-container"}>
+                <div className={"crt-overlay"}>
+                    <Image
                     src="/tv.svg"
-                    alt="CRT TV"
-                    className="tv-svg"
-                />
-                {children}
+                    alt="CRT Screen"
+                    width={210}
+                    height={170}
+                    className="crt-bg"
+                    priority
+                    unoptimized
+                    />
+                    <main className="crt-content">
+                        {children}
+                        <div className="scanlines" />
+                        <div className="glow-effect" />
+                    </main>
+                </div>
             </div>
+
         </div>
         </body>
         </html>

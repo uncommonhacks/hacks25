@@ -1,52 +1,95 @@
-/* Shelf styling */
-.shelf-svg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: auto;
-  z-index: 1;
+/* Arcade Machine Structure */
+.arcade-root {
+  --shelf-width: 110px;
+  --crt-aspect: calc(210 / 170);
+  --button-orange: #ff9955;
+  --screen-green: #ffffff;
 }
 
-/* TV screen styling */
-.tv-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Maintain arcade look */
-.arcade-container {
+.arcade-machine {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: var(--shelf-width) 1fr;
   min-height: 100vh;
   background: #1a1a1a;
 }
 
-.tv-screen {
+/* Shelf Styling */
+.shelf-container {
   position: relative;
+  z-index: 2;
+}
+
+.shelf-overlay {
+  position: fixed;
+  width: var(--shelf-width);
   height: 100vh;
 }
 
-.tv-content {
+.shelf-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* CRT Display Styling */
+.crt-container {
   position: relative;
-  z-index: 1;
-  padding: 4rem;
-  color: #00ff00;
+  flex-grow: 1;
+}
+
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: var(--shelf-width);
+  right: 0;
+  bottom: 0;
+}
+
+.crt-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.crt-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  height: 100vh;
+  color: var(--screen-green);
   font-family: 'Courier New', monospace;
-  min-height: 100vh;
+  overflow: auto;
 }
 
-.crt-text {
-  text-shadow: 0 0 5px #00ff00;
-  animation: text-glow 1s ease-in-out infinite alternate;
+/* CRT Effects */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: var(--shelf-width);
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(0, 0, 0, 0.15) 51%,
+          transparent 51%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 3;
 }
 
-@keyframes text-glow {
-  from { text-shadow: 0 0 5px #00ff00; }
-  to { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
+.glow-effect {
+  position: fixed;
+  top: 0;
+  left: var(--shelf-width);
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 20px var(--screen-green);
+  pointer-events: none;
+  z-index: 2;
 }
